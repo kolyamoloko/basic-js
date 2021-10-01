@@ -15,8 +15,14 @@ import { NotImplementedError } from '../extensions/index.js';
  */
 export default function createDreamTeam(arr) {
 let str = '';
-for (let i=0; i < arr.length; i++){
-  str += arr[i].slice(0,1);
-}
-return str;
+if(!Array.isArray(arr)) return false;
+if ( arr.length != null && 0 < arr.length){
+  for (let i=0; i < arr.length; i++)
+  {
+    if (typeof arr[i] == 'string' && arr[i] != null){str += arr[i].replace(/\s/g, '').slice(0,1);
+    }
+  }
+  return str.split('').sort().join('').toUpperCase().split('').sort().join('').toUpperCase()
+  }
+else {return false}
 }
