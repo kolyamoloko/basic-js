@@ -17,7 +17,12 @@ const HALF_LIFE_PERIOD = 5730;
  * dateSample('WOOT!') => false
  *
  */
-export default function dateSample(/* sampleActivity */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+ export default function dateSample(date) {
+  if (typeof +date !== 'number' || isNaN(+date) || typeof date !== 'string' || +date <= 0 || +date > MODERN_ACTIVITY) {
+    return false
+  }
+  const rateConstant = 0.693 / HALF_LIFE_PERIOD
+  const decomposition = Math.log(MODERN_ACTIVITY / +date)
+  const answer = Math.ceil(decomposition / rateConstant)
+  return answer
 }
